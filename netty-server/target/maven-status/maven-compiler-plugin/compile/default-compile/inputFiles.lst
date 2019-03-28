@@ -1,0 +1,17 @@
+F:\12306\netty-server\src\main\java\com\lk\netty\server\coder\PacketEncoder.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\io\handler\IoHandler.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\ChatServer.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\config\ServerConfigs.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\manager\ServerManager.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\constant\SessionCloseReason.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\info\User.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\exception\IllegalPacketException.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\packet\AbstractPacket.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\packet\type\PacketType.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\packet\ByteBufBean.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\manager\ChannelManager.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\io\util\ChannelUtils.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\io\util\IoSession.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\manager\PacketManager.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\coder\PacketDecoder.java
+F:\12306\netty-server\src\main\java\com\lk\netty\server\io\handler\ChildChannelHandler.java

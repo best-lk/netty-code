@@ -1,0 +1,12 @@
+F:\12306\netty-client\src\main\java\com\lk\netty\client\config\ClientConfigs.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\handler\ClientTransportHandler.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\packet\PacketType.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\packet\AbstractPacket.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\Client.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\packet\coder\PacketDecoder.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\packet\PacketManager.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\packet\ByteBufBean.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\exception\IllegalPacketException.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\packet\coder\PacketEncoder.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\session\IoSession.java
+F:\12306\netty-client\src\main\java\com\lk\netty\client\session\SessionManager.java
