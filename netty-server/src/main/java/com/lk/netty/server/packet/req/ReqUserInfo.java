@@ -3,6 +3,7 @@ package com.lk.netty.server.packet.req;
 import com.lk.netty.server.io.util.IoSession;
 import com.lk.netty.server.packet.AbstractPacket;
 import com.lk.netty.server.packet.PacketType;
+import com.lk.netty.server.service.UserInfoService;
 
 import io.netty.buffer.ByteBuf;
 
@@ -10,14 +11,12 @@ public class ReqUserInfo extends AbstractPacket{
 
 	@Override
 	public PacketType getPacketType() {
-		// TODO Auto-generated method stub
-		return null;
+		return PacketType.ReqUserInfo;
 	}
 
 	@Override
 	public void execPacket(IoSession session) {
-		// TODO Auto-generated method stub
-		
+		UserInfoService.sendOnlineUser(session);
 	}
 
 	@Override

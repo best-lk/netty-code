@@ -1,5 +1,10 @@
 package com.lk.netty.server.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
 import com.lk.netty.server.constant.ResponseMsg;
 import com.lk.netty.server.info.User;
 import com.lk.netty.server.io.util.IoSession;
@@ -26,6 +31,7 @@ public class UserLoginService {
 			res.setCode(ResponseMsg.SUCCESS);
 			res.setMessage("µÇÂ¼³É¹¦£¡");
 			session.setUser(user);
+			UserInfoService.addOnlineUser(user);
 		}else {
 			res.setCode(ResponseMsg.FAILD);
 			res.setMessage("µÇÂ¼Ê§°Ü£¡");

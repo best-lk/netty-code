@@ -7,8 +7,7 @@ public class ReqUserInfo extends AbstractPacket{
 
 	@Override
 	public PacketType getPacketType() {
-		// TODO Auto-generated method stub
-		return null;
+		return PacketType.ReqUserInfo;
 	}
 
 	@Override

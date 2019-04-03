@@ -1,5 +1,7 @@
 package com.lk.netty.client.service;
 
+import java.util.List;
+
 import com.lk.netty.client.ui.MainFrame;
 
 /**
@@ -29,13 +31,16 @@ public class MainFrameUIService {
 	 * 2019Äê3ÔÂ27ÈÕ
 	 * likai
 	 */
-	public void refreshShowData(String[] personalData, String[] groupData) {
-		for(String personal : personalData) {
-			MainFrame.personDataModel.addElement(personal);			
+	public void refreshShowData(List<String> personalData, List<String> groupData) {
+		if(personalData != null) {			
+			for(String personal : personalData) {
+				MainFrame.personDataModel.addElement(personal);			
+			}
 		}
-		for(String group : groupData) {
-			
-			MainFrame.groupDataModel.addElement(group);
+		if(groupData != null) {			
+			for(String group : groupData) {
+				MainFrame.groupDataModel.addElement(group);
+			}
 		}
 	}
 }

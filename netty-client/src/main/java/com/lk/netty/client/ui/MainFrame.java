@@ -17,7 +17,9 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import com.lk.netty.client.ui.listener.GroupSelectedListListener;
+import com.lk.netty.client.ui.listener.GroupSendMessageListener;
 import com.lk.netty.client.ui.listener.PersonalListListener;
+import com.lk.netty.client.ui.listener.SingleSendMessageListener;
 
 /**
  *  聊天主界面
@@ -41,7 +43,18 @@ public class MainFrame {
 	public static DefaultComboBoxModel<String> groupDataModel = new DefaultComboBoxModel(personalData);
 	//已选人列表数据模型
 	public static DefaultComboBoxModel<String> selectedDataModel = new DefaultComboBoxModel(selectedData);
-	
+	//单人聊天内容显示
+	public static JTextArea showSingleAcceptContent = new JTextArea(20, 40);
+	//单人聊天内容发送区
+	public static JTextArea sendSingleContent = new JTextArea(8, 40);
+	//组聊内容显示
+	public static JTextArea showGroupAcceptContent = new JTextArea(20, 40);
+	//组聊内容发送区
+	public static JTextArea sendGroupContent = new JTextArea(8, 40);
+	//单人列表
+	public static JList<String> jSingleList = new JList<>();
+	//组列表
+	public static JList<String> jGroupList = new JList<>();
 	/**
 	 * 主界面启动入口
 	 * 
@@ -128,7 +141,7 @@ public class MainFrame {
 		initContactePersonPanel(mainPanel, type);
 
 		//右侧聊天板块
-		initChatContentPanel(mainPanel);
+		initChatContentPanel(mainPanel, type);
         return mainPanel;
 	}
 
@@ -138,19 +151,45 @@ public class MainFrame {
 	 * 2019年3月15日
 	 * likai
 	 */
-	private static void initChatContentPanel(JPanel mainPanel) {
-		JPanel chatContentPanel = new JPanel(new BorderLayout(0, 5));
-		//上边聊天内容显示区域
-		JTextArea showAcceptContent = new JTextArea(20, 40);
-		showAcceptContent.setEditable(false);
-		chatContentPanel.add(showAcceptContent, BorderLayout.NORTH);
-		//发送按钮
-		JButton sendMessageBtn = new JButton("发送");
-		chatContentPanel.add(sendMessageBtn, BorderLayout.EAST);
-		//下边发送内容
-		JTextArea sendContent = new JTextArea(8, 40);
-		chatContentPanel.add(sendContent, BorderLayout.SOUTH);
-		mainPanel.add(chatContentPanel, BorderLayout.CENTER);
+	private static void initChatContentPanel(JPanel mainPanel, Integer type) {
+		if(type.equals(CONTANCT_PERSONAL)) {  //如果是联系人
+			JPanel chatSingleContentPanel = new JPanel(new BorderLayout(0, 5));
+			//上边聊天内容显示区域
+			showSingleAcceptContent.setEditable(false);
+			showSingleAcceptContent.setLineWrap(true);
+			showSingleAcceptContent.setWrapStyleWord(true);
+			showSingleAcceptContent.setAutoscrolls(true);
+			chatSingleContentPanel.add(showSingleAcceptContent, BorderLayout.NORTH);
+			//发送按钮
+			JButton sendSingleMessageBtn = new JButton("发送");
+			sendSingleMessageBtn.addActionListener(new SingleSendMessageListener());
+			chatSingleContentPanel.add(sendSingleMessageBtn, BorderLayout.EAST);
+			//下边发送内容
+			sendSingleContent.setLineWrap(true);
+			sendSingleContent.setWrapStyleWord(true);
+			sendSingleContent.setAutoscrolls(true);
+			chatSingleContentPanel.add(sendSingleContent, BorderLayout.SOUTH);
+			mainPanel.add(chatSingleContentPanel, BorderLayout.CENTER);
+		}else {  //如果是讨论组			
+			JPanel chatGroupContentPanel = new JPanel(new BorderLayout(0, 5));
+			//上边聊天内容显示区域
+			showGroupAcceptContent.setEditable(false);
+			showGroupAcceptContent.setLineWrap(true);
+			showGroupAcceptContent.setWrapStyleWord(true);
+			showGroupAcceptContent.setAutoscrolls(true);
+			chatGroupContentPanel.add(showGroupAcceptContent, BorderLayout.NORTH);
+			//发送按钮
+			JButton sendGroupMessageBtn = new JButton("发送");
+			sendGroupMessageBtn.addActionListener(new GroupSendMessageListener());
+			chatGroupContentPanel.add(sendGroupMessageBtn, BorderLayout.EAST);
+			//下边发送内容
+			sendGroupContent.setLineWrap(true);
+			sendGroupContent.setWrapStyleWord(true);
+			sendGroupContent.setAutoscrolls(true);
+			chatGroupContentPanel.add(sendGroupContent, BorderLayout.SOUTH);
+			mainPanel.add(chatGroupContentPanel, BorderLayout.CENTER);
+		}
+		
 	}
 
 	/**
@@ -165,18 +204,18 @@ public class MainFrame {
 			JScrollPane scrollPersonalPanel = new JScrollPane();
 			scrollPersonalPanel.setPreferredSize(new Dimension(180, 550));
 			mainPanel.add(scrollPersonalPanel, BorderLayout.WEST);
-			JList<String> jList = new JList<>();
-			scrollPersonalPanel.setViewportView(jList);
-			jList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			jList.setModel(personDataModel);
+			JList<String> jSingleList = new JList<>();
+			scrollPersonalPanel.setViewportView(jSingleList);
+			jSingleList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			jSingleList.setModel(personDataModel);
 		}else {  //如果是讨论组
 			JScrollPane scrollGroupPanel = new JScrollPane();
 			scrollGroupPanel.setPreferredSize(new Dimension(180, 550));
 			mainPanel.add(scrollGroupPanel, BorderLayout.WEST);
-			JList<String> jList = new JList<>();
-			scrollGroupPanel.setViewportView(jList);
-			jList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			jList.setModel(groupDataModel);
+			JList<String> jGroupList = new JList<>();
+			scrollGroupPanel.setViewportView(jGroupList);
+			jGroupList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			jGroupList.setModel(groupDataModel);
 		}
 	}
 }
