@@ -19,6 +19,7 @@ import com.lk.netty.client.packet.res.ResHeartBeat;
 import com.lk.netty.client.packet.res.ResUserInfo;
 import com.lk.netty.client.packet.res.ResUserLogin;
 import com.lk.netty.client.packet.res.ResUserLogout;
+import com.lk.netty.client.packet.res.NotifyOnlineRes;
 
 /**
  *  自定义数据包类型
@@ -57,7 +58,10 @@ public enum PacketType {
 		
 		/**登出**/
 		ReqUserLogout(6001, ReqUserLogout.class),
-		ResUserLogout(6002, ResUserLogout.class);
+		ResUserLogout(6002, ResUserLogout.class),
+		
+		/**上线通知包**/
+		NotifyOnlineRes(7001, NotifyOnlineRes.class);
 	
 		private int type = 0;
 		private Class<? extends AbstractPacket> packetClass;

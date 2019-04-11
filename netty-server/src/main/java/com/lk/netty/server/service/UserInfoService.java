@@ -66,4 +66,17 @@ public class UserInfoService {
 		pact.setArrayJson(JSONArray.toJSONString(getOnlineUser()));
 		SessionManager.INSTANCE.sendPacketTo(session, pact);
 	}
+	
+	/**
+	 * 向所有在线用户推送上线通知
+	 * @author likai
+	 * 2019年4月11日
+	 */
+	public static void notifyAllUserLogin() {
+		ResUserInfo pact = new ResUserInfo();
+		pact.setCode(ResponseMsg.SUCCESS);
+		pact.setMessage("获取数据成功！");
+		pact.setArrayJson(JSONArray.toJSONString(getOnlineUser()));
+		SessionManager.INSTANCE.notifyToAllOnlineUsers(pact);
+	}
 }

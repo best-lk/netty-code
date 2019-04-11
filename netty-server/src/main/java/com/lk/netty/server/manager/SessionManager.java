@@ -12,6 +12,7 @@ import com.lk.netty.server.info.User;
 import com.lk.netty.server.io.util.ChannelUtils;
 import com.lk.netty.server.io.util.IoSession;
 import com.lk.netty.server.packet.AbstractPacket;
+import com.lk.netty.server.service.UserInfoService;
 
 import io.netty.channel.Channel;
 
@@ -66,7 +67,7 @@ public enum SessionManager {
 		userId2Sessions.values().forEach( session -> session.sendPacket(pact));
 	}
 
-	public IoSession getSessionBy(long userId) {
+	public IoSession getSessionBy(String userId) {
 		return this.userId2Sessions.get(userId);
 	}
 
@@ -89,6 +90,7 @@ public enum SessionManager {
 		IoSession session = ChannelUtils.getSessionBy(context);
 		String userId = session2UserIds.remove(session);
 		userId2Sessions.remove(userId);
+		UserInfoService.removeOnlineUser(userId);
 		if (session != null) {
 			session.close(reason);
 		}

@@ -6,6 +6,7 @@ import com.lk.netty.client.constant.ResponseMsg;
 import com.lk.netty.client.exception.BusinessException;
 import com.lk.netty.client.packet.req.ReqUserInfo;
 import com.lk.netty.client.packet.req.ReqUserLogin;
+import com.lk.netty.client.packet.req.User;
 import com.lk.netty.client.packet.res.ResUserLogin;
 import com.lk.netty.client.session.SessionManager;
 
@@ -40,7 +41,7 @@ public class LoginServiceManager {
 	 */
 	public void LoginReq(String userName, String password) {
 		ReqUserLogin login = new ReqUserLogin();
-		login.setUserId(UUID.randomUUID().toString());
+		login.setUserId(UUID.randomUUID().toString().replaceAll("-", ""));
 		login.setUserName(userName);
 		login.setPassword(password);
 		SessionManager.INSTANCE.sendMessage(login);
@@ -59,12 +60,13 @@ public class LoginServiceManager {
 		//登录成功
 		if(res.getCode().equals(ResponseMsg.SUCCESS)) {
 			LoginFrameUIService.getINSTANCE().loginSuccess();
-			ReqUserInfo userInfo = new ReqUserInfo();
+			//ReqUserInfo userInfo = new ReqUserInfo();
 			//请求在线用户数据
-			SessionManager.INSTANCE.sendMessage(userInfo);
-			//String[] personalData = new String[] {"联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4","联系人1","联系人2","联系人3","联系人4"};
-			//String[] groupData = new String[] {"联系人11","联系人22","联系人33","联系人44"};
-			//MainFrameUIService.getINSTANCE().refreshShowData(personalData, groupData);
+			//SessionManager.INSTANCE.sendMessage(userInfo);
+			User user = new User();
+			user.setUserId(res.getUserId());
+			user.setUserName(res.getUserName());
+			LocalUserLoginInfo.setUserInfo(user);
 		}else {
 			//弹出错误提示
 			LoginFrameUIService.getINSTANCE().loginFaild(res.getMessage());

@@ -32,12 +32,14 @@ public class MainFrameUIService {
 	 * likai
 	 */
 	public void refreshShowData(List<String> personalData, List<String> groupData) {
-		if(personalData != null) {			
+		if(personalData != null) {
+			MainFrame.personDataModel.removeAllElements();
 			for(String personal : personalData) {
 				MainFrame.personDataModel.addElement(personal);			
 			}
 		}
-		if(groupData != null) {			
+		if(groupData != null) {
+			MainFrame.groupDataModel.removeAllElements();
 			for(String group : groupData) {
 				MainFrame.groupDataModel.addElement(group);
 			}

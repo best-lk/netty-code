@@ -43,7 +43,10 @@ public enum PacketType {
 	
 	/**登出**/
 	ReqUserLogout(6001, ReqUserLogout.class),
-	ResUserLogout(6002, ResUserLogout.class);
+	ResUserLogout(6002, ResUserLogout.class),
+	
+	/**上线通知包**/
+	NotifyOnlineRes(7001, NotifyOnlineRes.class);
 
 	private int type;
 	private Class<? extends AbstractPacket> packetClass;

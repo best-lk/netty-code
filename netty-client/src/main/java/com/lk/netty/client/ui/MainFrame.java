@@ -46,7 +46,7 @@ public class MainFrame {
 	//单人聊天内容显示
 	public static JTextArea showSingleAcceptContent = new JTextArea(20, 40);
 	//单人聊天内容发送区
-	public static JTextArea sendSingleContent = new JTextArea(8, 40);
+	public static JTextArea sendSingleContent = new JTextArea(7, 40);
 	//组聊内容显示
 	public static JTextArea showGroupAcceptContent = new JTextArea(20, 40);
 	//组聊内容发送区
@@ -154,12 +154,14 @@ public class MainFrame {
 	private static void initChatContentPanel(JPanel mainPanel, Integer type) {
 		if(type.equals(CONTANCT_PERSONAL)) {  //如果是联系人
 			JPanel chatSingleContentPanel = new JPanel(new BorderLayout(0, 5));
+			JScrollPane js = new JScrollPane();
 			//上边聊天内容显示区域
 			showSingleAcceptContent.setEditable(false);
 			showSingleAcceptContent.setLineWrap(true);
 			showSingleAcceptContent.setWrapStyleWord(true);
 			showSingleAcceptContent.setAutoscrolls(true);
-			chatSingleContentPanel.add(showSingleAcceptContent, BorderLayout.NORTH);
+			js.setViewportView(showSingleAcceptContent);
+			chatSingleContentPanel.add(js, BorderLayout.NORTH);
 			//发送按钮
 			JButton sendSingleMessageBtn = new JButton("发送");
 			sendSingleMessageBtn.addActionListener(new SingleSendMessageListener());
@@ -204,7 +206,6 @@ public class MainFrame {
 			JScrollPane scrollPersonalPanel = new JScrollPane();
 			scrollPersonalPanel.setPreferredSize(new Dimension(180, 550));
 			mainPanel.add(scrollPersonalPanel, BorderLayout.WEST);
-			JList<String> jSingleList = new JList<>();
 			scrollPersonalPanel.setViewportView(jSingleList);
 			jSingleList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			jSingleList.setModel(personDataModel);
@@ -212,7 +213,6 @@ public class MainFrame {
 			JScrollPane scrollGroupPanel = new JScrollPane();
 			scrollGroupPanel.setPreferredSize(new Dimension(180, 550));
 			mainPanel.add(scrollGroupPanel, BorderLayout.WEST);
-			JList<String> jGroupList = new JList<>();
 			scrollGroupPanel.setViewportView(jGroupList);
 			jGroupList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			jGroupList.setModel(groupDataModel);

@@ -7,10 +7,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.lk.netty.server.constant.SessionCloseReason;
 import com.lk.netty.server.io.util.ChannelUtils;
 import com.lk.netty.server.io.util.IoSession;
 import com.lk.netty.server.manager.PacketManager;
+import com.lk.netty.server.manager.SessionManager;
 import com.lk.netty.server.packet.AbstractPacket;
+import com.lk.netty.server.service.UserInfoService;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -59,6 +62,8 @@ public class IoHandler extends ChannelInboundHandlerAdapter{
 		if(cause instanceof IOException && channel.isActive()){
 			logger.error("simpleclient"+channel.remoteAddress()+"“Ï≥£");
 			//SpringContext.getUserService().userLogout(channel, SessionCloseReason.NORMAL);
+			SessionManager.INSTANCE.ungisterUserContext(channel, SessionCloseReason.NORMAL);
+			UserInfoService.notifyAllUserLogin();
 			ctx.close();
 		}
 	}

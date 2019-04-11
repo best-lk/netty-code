@@ -12,6 +12,12 @@ public class ResUserLogin extends AbstractPacket{
 	
 	private String message;
 	
+	private String onlineRemind;
+	
+	private String userId;
+	
+	private String userName;
+	
 	public Integer getCode() {
 		return code;
 	}
@@ -42,12 +48,42 @@ public class ResUserLogin extends AbstractPacket{
 	@Override
 	public void writeBody(ByteBuf buf) {
 		buf.writeInt(code);
-		writeUTF8(buf, message);	
+		writeUTF8(buf, message);
+		writeUTF8(buf, onlineRemind);
+		writeUTF8(buf, userId);
+		writeUTF8(buf, userName);
 	}
 
 	@Override
 	public void readBody(ByteBuf buf) {
 		this.code = buf.readInt();
 		this.message = readUTF8(buf);
+		this.onlineRemind = readUTF8(buf);
+		this.userId = readUTF8(buf);
+		this.userName = readUTF8(buf);
+	}
+
+	public String getOnlineRemind() {
+		return onlineRemind;
+	}
+
+	public void setOnlineRemind(String onlineRemind) {
+		this.onlineRemind = onlineRemind;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }
