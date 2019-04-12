@@ -44,6 +44,7 @@ public class SingleSendMessageListener implements ActionListener{
 		//MainFrame.showSingleAcceptContent.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		MainFrame.showSingleAcceptContent.append("\n"+ localUser.getUserName() + ":");
 		MainFrame.showSingleAcceptContent.append("\n"+message);
+		MainFrame.showSingleAcceptContent.setCaretPosition(MainFrame.showSingleAcceptContent.getText().length());
 		MainFrame.sendSingleContent.setText("");
 	}
 

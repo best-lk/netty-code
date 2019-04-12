@@ -3,6 +3,7 @@ package com.lk.netty.client;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 
 import com.lk.netty.client.config.ClientConfigs;
 import com.lk.netty.client.handler.ClientTransportHandler;
@@ -48,7 +49,8 @@ public class Client {
 		EventLoopGroup group = new NioEventLoopGroup(1);  
 		try{  
 			Bootstrap b  = new Bootstrap();  
-			b.group(group).channel(NioSocketChannel.class)  
+			b.group(group).channel(NioSocketChannel.class)
+			.remoteAddress(new InetSocketAddress(host, port))
 			.handler(new ChannelInitializer<SocketChannel>(){  
  
 				@Override  
@@ -61,13 +63,10 @@ public class Client {
 //					pipeline.addLast(new StringDecoder());
 //					pipeline.addLast(new StringEncoder());
 					pipeline.addLast(new ClientTransportHandler());  
-				}  
- 
-			});  
- 
-			b.connect(new InetSocketAddress(host, port),  
-					new InetSocketAddress(config.getLocalServerIp(), config.getLocalServerPort()))  
-					.sync().channel();
+				}
+			});
+			
+			b.connect().sync();
 		}catch(Exception e){  
 			e.printStackTrace();  
 			//          group.shutdownGracefully();  //这里不再是优雅关闭了  

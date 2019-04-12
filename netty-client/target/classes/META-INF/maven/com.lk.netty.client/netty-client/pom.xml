@@ -44,7 +44,7 @@
                     <archive>
                         <manifest>
                             <!-- 此处指定main方法入口的class -->
-                            <mainClass>com.lk.netty.client.Client</mainClass>
+                            <mainClass>com.lk.netty.client.ui.LoginFrame</mainClass>
                         </manifest>
                     </archive>
                  </configuration>

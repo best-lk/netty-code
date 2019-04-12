@@ -18,6 +18,7 @@ import javax.swing.ListSelectionModel;
 
 import com.lk.netty.client.ui.listener.GroupSelectedListListener;
 import com.lk.netty.client.ui.listener.GroupSendMessageListener;
+import com.lk.netty.client.ui.listener.MainFrameListener;
 import com.lk.netty.client.ui.listener.PersonalListListener;
 import com.lk.netty.client.ui.listener.SingleSendMessageListener;
 
@@ -75,6 +76,8 @@ public class MainFrame {
 		frame.setContentPane(tabPanel);
 		
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.addWindowListener(new MainFrameListener());
 	}
 
 	/**

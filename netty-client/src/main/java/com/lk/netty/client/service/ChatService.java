@@ -33,5 +33,6 @@ public class ChatService {
 		System.out.println("接收到消息："+ res.getMessage());
 		MainFrame.showSingleAcceptContent.append("\n"+res.getFromUserName() + ":");
 		MainFrame.showSingleAcceptContent.append("\n"+res.getMessage());
+		MainFrame.showSingleAcceptContent.setCaretPosition(MainFrame.showSingleAcceptContent.getText().length());
 	}
 }

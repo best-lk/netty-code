@@ -6,6 +6,7 @@ import com.lk.netty.client.constant.ResponseMsg;
 import com.lk.netty.client.exception.BusinessException;
 import com.lk.netty.client.packet.req.ReqUserInfo;
 import com.lk.netty.client.packet.req.ReqUserLogin;
+import com.lk.netty.client.packet.req.ReqUserLogout;
 import com.lk.netty.client.packet.req.User;
 import com.lk.netty.client.packet.res.ResUserLogin;
 import com.lk.netty.client.session.SessionManager;
@@ -71,5 +72,16 @@ public class LoginServiceManager {
 			//弹出错误提示
 			LoginFrameUIService.getINSTANCE().loginFaild(res.getMessage());
 		}
+	}
+
+	/**
+	 *  退出登录
+	 * @author likai
+	 * 2019年4月12日
+	 */
+	public void loginOut() {
+		ReqUserLogout req = new ReqUserLogout();
+		req.setUserId(LocalUserLoginInfo.getUserInfo().getUserId());
+		SessionManager.INSTANCE.sendMessage(req);
 	}
 }

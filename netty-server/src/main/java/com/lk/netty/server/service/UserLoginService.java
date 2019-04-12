@@ -6,9 +6,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import com.lk.netty.server.constant.ResponseMsg;
+import com.lk.netty.server.constant.SessionCloseReason;
 import com.lk.netty.server.info.User;
 import com.lk.netty.server.io.util.IoSession;
 import com.lk.netty.server.manager.SessionManager;
+import com.lk.netty.server.packet.req.ReqUserLogout;
 import com.lk.netty.server.packet.res.NotifyOnlineRes;
 import com.lk.netty.server.packet.res.ResUserLogin;
 
@@ -48,5 +50,17 @@ public class UserLoginService {
 		if(isSuccess) {
 			UserInfoService.notifyAllUserLogin();
 		}
+	}
+
+	/**
+	 * 退出登录
+	 * @author likai
+	 * 2019年4月12日
+	 * @param session
+	 * @param reqUserLogout
+	 */
+	public static void logout(IoSession session, ReqUserLogout reqUserLogout) {
+		SessionManager.INSTANCE.ungisterUserContext(session.getChannel(), SessionCloseReason.NORMAL);
+		UserInfoService.notifyAllUserLogin();
 	}
 }
